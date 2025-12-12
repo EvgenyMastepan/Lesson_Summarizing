@@ -6,18 +6,6 @@
 //
 import Foundation
 
-struct User: Decodable {
-    let data: UserData
-}
-
-struct UserData: Decodable {
-    let users: [UserItem]
-}
-
-struct UserItem: Decodable {
-    let first_name: String
-}
-
 struct DoctorsResponse: Codable {
     let count: Int // Общее количество врачей
     let previous: String? // Предуыдущая страница результатов
@@ -41,7 +29,7 @@ struct Doctor: Codable, Identifiable {
     let specialization: [Specialization] // Массив специализаций врача (Может быть пустым)
     let ratings: [Rating] // Массив оценок
     let ratingsRating: Double // Общий средний рейтинг врача по всем параметрам
-    let senirity: Int // Стаж работы врача в годах
+    let seniority: Int // Стаж работы врача в годах
     let textChatPrice: Int // Стоимость письменной консультации
     let videoChatPrice: Int // Стоимость консультации по видео
     let homePrice: Int // Стоимость консультации на дому
@@ -51,7 +39,7 @@ struct Doctor: Codable, Identifiable {
     let freeReceptionTime: [FreeTimeSlot] // Массив свободного времени для приёма
     let educationTypeLabel: EducationTypeLabel? // Объект информации об образовании
     let higherEducation: [Education] // Массив записей об образовании
-    let workExperiense: [WorkExperience] // Массив записей о рабочем стаже
+    let workExperience: [WorkExperience] // Массив записей о рабочем стаже
     let advancedTraining: [AdvancedTraining] // Массив записей повышения квалификации
     let rank: Int // Код звания
     let rankLabel: String // Текстовая метка звания ("Доцент")
@@ -116,6 +104,8 @@ struct Doctor: Codable, Identifiable {
     
 }
     
+    // MARK: -- Прочие и вспомогательные
+
 // Специализация
 struct Specialization: Codable, Identifiable {
     let id: Int // Уникальный id специализации
@@ -175,7 +165,7 @@ struct WorkExperience: Codable {
     let organization: String // Организация
     let position: String // Должность
     let startDate: TimeInterval // Дата начала работы
-    let endDate: TimeInterval // Дата окончания работы
+    let endDate: TimeInterval? // Дата окончания работы
     let untilNow: Bool // Флаг длящегося обучения
     let isModerated: Bool // Подтверждено ли модератором
     

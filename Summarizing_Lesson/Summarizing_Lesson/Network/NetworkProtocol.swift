@@ -6,5 +6,5 @@
 //
 
 protocol NetworkProtocol {
-    func loadUsers()
+    func loadUsers() async throws -> [Doctor]
 }
